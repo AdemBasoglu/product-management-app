@@ -4,7 +4,6 @@ import be.intecbrussel.productmanagementapp.models.Product;
 
 import java.util.List;
 
-
 public interface ProductService {
 
     Product addProduct(Product product);
@@ -14,6 +13,6 @@ public interface ProductService {
     void deleteProduct(long id);
     Product isAvailable(long id);
     Product isNotAvailable(long id);
-    List<Product> seachProducts(String query);
+    List<Product> searchProducts(String query);
 
 }

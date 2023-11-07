@@ -14,6 +14,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
@@ -41,28 +42,49 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(Product product, long id) {
-        return null;
+
+        Product foundProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ProductException("Product not found with id: " + id));
+
+        foundProduct.setName(product.getName());
+        foundProduct.setDescription(product.getDescription());
+        foundProduct.setPrice(product.getPrice());
+        foundProduct.setAvailable(product.isAvailable());
+
+        return productRepository.save(foundProduct);
     }
 
     @Override
     public void deleteProduct(long id) {
+        Product foundProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ProductException("Product not found with id: " + id));
 
+        productRepository.deleteById(id);
     }
 
     @Override
     public Product isAvailable(long id) {
-        return null;
+        Product foundProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ProductException("Product not found with id: " + id));
+
+        foundProduct.setAvailable(Boolean.TRUE);
+
+        return productRepository.save(foundProduct);
     }
 
     @Override
     public Product isNotAvailable(long id) {
-        return null;
+        Product foundProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ProductException("Product not found with id: " + id));
+
+        foundProduct.setAvailable(Boolean.FALSE);
+
+        return productRepository.save(foundProduct);
     }
 
     @Override
-    public List<Product> seachProducts(String query) {
-        return null;
+    public List<Product> searchProducts(String query) {
+        return productRepository.searchProducts(query);
     }
-
 
 }

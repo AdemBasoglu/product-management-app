@@ -14,16 +14,16 @@ public class Product {
     private String name;
     private String description;
     private double price;
-    private boolean isAvailable;
+    private boolean available;
 
     protected Product() {}
 
-    public Product(long id, String name, String description, double price, boolean isAvailable) {
+    public Product(long id, String name, String description, double price, boolean available) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.isAvailable = isAvailable;
+        this.available = available;
     }
 
     public long getId() {
@@ -55,11 +55,11 @@ public class Product {
     }
 
     public boolean isAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", isAvailable=" + isAvailable +
+                ", available=" + available +
                 '}';
     }
 
