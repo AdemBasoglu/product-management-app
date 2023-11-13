@@ -45,9 +45,10 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable("id") long id) {
+    public void deleteProduct(@PathVariable("id") long id) {
         productService.deleteProduct(id);
-        return ResponseEntity.ok("Product is successfully deleted with id: " + id);
+        // changed value to void. so that we don't get an error on clientside
+//        return ResponseEntity.ok("Product is successfully deleted with id: " + id);
     }
 
     @PatchMapping("/is-available/{id}")
